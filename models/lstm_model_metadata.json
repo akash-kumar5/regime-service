@@ -1,0 +1,30 @@
+{
+    "model_type": "LSTM",
+    "target": "regime",
+    "regime_map": {
+        "Choppy High-Vol": 0,
+        "Range": 1,
+        "Squeeze": 2,
+        "Strong Trend": 3,
+        "Volatility Spike": 4,
+        "Weak Trend": 5
+    },
+    "features": [
+        "log_ret_1_5m",
+        "ema_ratio_9_21_5m",
+        "macd_hist_5m",
+        "adx_5m",
+        "atr_norm_5m",
+        "bb_width_5m",
+        "rsi_14_5m",
+        "log_ret_1_15m",
+        "ema_ratio_9_21_15m",
+        "macd_hist_15m",
+        "adx_15m",
+        "atr_norm_15m",
+        "bb_width_15m",
+        "rsi_14_15m"
+    ],
+    "time_steps": 64,
+    "training_file": "BTCUSDT_combined_klines_20221107_20251106_states6_labeled.csv"
+}
