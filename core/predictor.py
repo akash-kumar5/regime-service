@@ -61,6 +61,8 @@ class RegimePredictor:
             self.index_to_regime[i]: float(probs[i])
             for i in range(len(probs))
         }
+        
+        prob_map = {k: round(v, 6) for k, v in prob_map.items()}
 
         current = max(prob_map, key=prob_map.get)
 
