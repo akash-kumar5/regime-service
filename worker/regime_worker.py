@@ -1,8 +1,6 @@
 # worker/regime_worker.py
 import sys
 import os
-
-# Adds the project root (one level up) to the top of sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import time
@@ -21,13 +19,14 @@ REGIMES = [
     "STRONG_DOWNTREND"
 ]
 
-
-DATA_PATH = "data/BTCUSDT_combined_klines_20221107_20251106.csv"
-
 SYMBOL = "BTCUSDT"
 SLEEP_SECONDS = 100  # 5 minutes
 
+prev_regime = None
+prev_confidence = None
+
 def run_worker():
+    global prev_regime, prev_confidence
     print("Regime worker started (LIVE BINANCE)")
 
     while True:
@@ -44,10 +43,47 @@ def run_worker():
             )
 
             result = predictor.predict(X)
+            current_regime = result["current_regime"]
+            confidence = result["confidence"]
+
+            alerts = []
+
+            # A. Strong trend confirmation
+            if (
+                current_regime == "Strong Trend"
+                and confidence >= 0.65
+                and prev_regime != "Strong Trend"
+            ):
+                alerts.append("STRONG_TREND_CONFIRMED")
+
+            # B. Chop warning
+            if (
+                current_regime == "Choppy High-Vol"
+                and confidence >= 0.6
+                and prev_regime != "Choppy High-Vol"
+            ):
+                alerts.append("CHOPPY_MARKET_WARNING")
+
+            # C. Regime flip
+            if (
+                prev_regime is not None
+                and current_regime != prev_regime
+                and confidence >= 0.55
+            ):
+                alerts.append(f"REGIME_CHANGE {prev_regime} → {current_regime}")
+
+            # Print alerts (for now)
+            for a in alerts:
+                print("[ALERT]", a)
+
+            # update previous state
+            prev_regime = current_regime
+            prev_confidence = confidence
 
             update_state({
                 "symbol": SYMBOL,
-                **result
+                **result,
+                "alerts":alerts
             })
 
             print("Updated state:", result)

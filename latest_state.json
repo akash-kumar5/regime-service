@@ -1,1 +1,1 @@
-{"symbol": "BTCUSDT", "current_regime": "Choppy High-Vol", "confidence": 0.93156, "probabilities": {"Choppy High-Vol": 0.93156, "Range": 0.0, "Squeeze": 0.0, "Strong Trend": 0.040362, "Volatility Spike": 0.012263, "Weak Trend": 0.015815}, "timestamp": 1766425756}
+{"symbol": "BTCUSDT", "current_regime": "Strong Trend", "confidence": 0.60902, "probabilities": {"Choppy High-Vol": 0.382544, "Range": 0.0, "Squeeze": 0.0, "Strong Trend": 0.60902, "Volatility Spike": 0.008436, "Weak Trend": 0.0}, "alerts": [], "timestamp": 1766436678}

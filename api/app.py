@@ -16,3 +16,12 @@ def health():
 @app.get("/current-regime")
 def current_regime():
     return get_state()
+
+@app.get("/alerts")
+def get_alerts():
+    state = get_state()
+    return {
+        "timestamp": state.get("timestamp"),
+        "alerts": state.get("alerts", [])
+    }
+
