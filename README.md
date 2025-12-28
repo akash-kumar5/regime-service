@@ -1,12 +1,12 @@
-### Crypto Market Regime Service
+## Crypto Market Regime Service
 
-**Real-time market regime detection for crypto markets using deep learning.**This service classifies the current market state (trend, chop, volatility) using multi-timeframe OHLCV data and serves it via API and Telegram alerts.
+**Real-time market regime detection for crypto markets using deep learning.** This service classifies the current market state (trend, chop, volatility) using multi-timeframe OHLCV data and serves it via API and Telegram alerts.
 
-## 🌐 Live Deployment
+##  Live Deployment
 
 This service is **actively running in production** on AWS.
 
-### 🔗 API
+### API
 The regime classification API is live and continuously updated.
 
 > Endpoint (example):
@@ -159,4 +159,5 @@ This project is for **research and educational purposes only**.
 - Crypto markets are highly risky
 
 Use at your own discretion.
+
 
