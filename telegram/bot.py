@@ -27,13 +27,14 @@ BASE_DIR = os.path.dirname(__file__)
 SETTINGS_FILE = os.path.join(BASE_DIR, "user_settings.json")
 
 REGIMES = [
-    "STRONG_UPTREND",
-    "WEAK_UPTREND",
-    "RANGE",
-    "SQUEEZE",
-    "WEAK_DOWNTREND",
-    "STRONG_DOWNTREND",
+    "Choppy High-Vol",
+    "Range",
+    "Squeeze",
+    "Strong Trend",
+    "Volatility Spike",
+    "Weak Trend",
 ]
+
 
 ALERT_TYPES = [
     "STRONG_TREND_CONFIRMED",

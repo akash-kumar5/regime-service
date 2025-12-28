@@ -11,16 +11,17 @@ from core.feature_engineering import build_lstm_input
 from core.data_fetcher import fetch_klines, merge_timeframes
 
 REGIMES = [
-    "STRONG_UPTREND",
-    "WEAK_UPTREND",
-    "RANGE",
-    "SQUEEZE",
-    "WEAK_DOWNTREND",
-    "STRONG_DOWNTREND"
+    "Choppy High-Vol",
+    "Range",
+    "Squeeze",
+    "Strong Trend",
+    "Volatility Spike",
+    "Weak Trend",
 ]
 
+
 SYMBOL = "BTCUSDT"
-SLEEP_SECONDS = 100  # 5 minutes
+SLEEP_SECONDS = 120  # 5 minutes
 
 prev_regime = None
 prev_confidence = None
