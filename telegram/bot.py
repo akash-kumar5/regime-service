@@ -3,6 +3,7 @@ import time
 import json
 import requests
 from typing import Dict
+import asyncio
 
 from telegram import (
     Update,
@@ -64,7 +65,6 @@ def get_user_settings(chat_id: int) -> Dict:
         settings[cid] = {
             "alerts": {a: False for a in ALERT_TYPES},
             "regime_notify": {r: False for r in REGIMES},
-            "last_regime_sent": None,
         }
         save_settings(settings)
 
@@ -131,9 +131,14 @@ async def regimes(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=build_regime_keyboard(chat_id),
     )
 
+
 async def status(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    loop = asyncio.get_running_loop()
     try:
-        data = requests.get(API_URL, timeout=5).json()
+        resp = await loop.run_in_executor(
+            None, lambda: requests.get(API_URL, timeout=5)
+        )
+        data = resp.json()
         msg = (
             f"Symbol: {data['symbol']}\n"
             f"Regime: {data['current_regime']}\n"
@@ -144,6 +149,7 @@ async def status(update: Update, context: ContextTypes.DEFAULT_TYPE):
         msg = "Failed to fetch current regime."
 
     await update.message.reply_text(msg)
+
 
 # -------------------------
 # BUTTON HANDLER

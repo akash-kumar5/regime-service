@@ -21,7 +21,7 @@ REGIMES = [
 
 
 SYMBOL = "BTCUSDT"
-SLEEP_SECONDS = 120  # 5 minutes
+SLEEP_SECONDS = 120  # 2 minutes
 
 prev_regime = None
 prev_confidence = None
@@ -79,7 +79,7 @@ def run_worker():
 
             # update previous state
             prev_regime = current_regime
-            prev_confidence = confidence
+            
 
             update_state({
                 "symbol": SYMBOL,
