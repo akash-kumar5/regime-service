@@ -8,3 +8,4 @@ joblib
 tensorflow
 ta-lib
 python-dotenv
+python-telegram-bot
