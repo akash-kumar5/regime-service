@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Virtual env
+venv/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets & runtime state
+telegram/user_settings.json
