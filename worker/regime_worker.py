@@ -9,6 +9,10 @@ from core.predictor import predictor
 from core.state import update_state
 from core.feature_engineering import build_lstm_input
 from core.data_fetcher import fetch_klines, merge_timeframes
+from telegram.bot import load_settings
+from telegram.notifier import send_message
+
+settings = load_settings()
 
 REGIMES = [
     "Choppy High-Vol",
@@ -18,7 +22,6 @@ REGIMES = [
     "Volatility Spike",
     "Weak Trend",
 ]
-
 
 SYMBOL = "BTCUSDT"
 SLEEP_SECONDS = 120  # 2 minutes
@@ -93,6 +96,25 @@ def run_worker():
             print("Worker error:", e)
 
         time.sleep(SLEEP_SECONDS)
+
+        for chat_id, prefs in settings.items():
+            # A. alert-based notifications
+            for alert in alerts:
+                if prefs["alerts"].get(alert):
+                    send_message(
+                        chat_id,
+                        f"⚠️ *{alert.replace('_', ' ')}*\n"
+                        f"Regime: {current_regime}\n"
+                        f"Confidence: {confidence:.2f}"
+                    )
+
+            # B. regime-entry notifications
+            if prefs["regime_notify"].get(current_regime):
+                send_message(
+                    chat_id,
+                    f"📊 *Market entered {current_regime}*\n"
+                    f"Confidence: {confidence:.2f}"
+            )
 
 if __name__ == "__main__":
     run_worker()
