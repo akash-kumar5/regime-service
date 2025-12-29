@@ -73,10 +73,10 @@ def run_worker():
             # ---- TELEGRAM NOTIFICATIONS (IMPORTANT PART)
 
             settings = load_settings()
-            print("[DEBUG] Loaded settings:", settings)
+            # print("[DEBUG] Loaded settings:", settings)
 
             for chat_id, prefs in settings.items():
-                print(f"[DEBUG] Checking chat_id={chat_id}")
+                # print(f"[DEBUG] Checking chat_id={chat_id}")
 
                 # alert-based notifications
                 for alert in alerts:
@@ -86,7 +86,7 @@ def run_worker():
                             f"Regime: {current_regime}\n"
                             f"Confidence: {confidence:.2f}"
                         )
-                        print(f"[DEBUG] Sending ALERT to {chat_id}: {msg}")
+                        # print(f"[DEBUG] Sending ALERT to {chat_id}: {msg}")
                         send_message(chat_id, msg)
 
                 # regime-entry notifications
@@ -98,7 +98,7 @@ def run_worker():
                         f"📊 Market entered {current_regime}\n"
                         f"Confidence: {confidence:.2f}"
                     )
-                    print(f"[DEBUG] Sending REGIME to {chat_id}: {msg}")
+                    # print(f"[DEBUG] Sending REGIME to {chat_id}: {msg}")
                     send_message(chat_id, msg)
 
 

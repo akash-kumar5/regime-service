@@ -5,7 +5,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 def send_message(chat_id: int, text: str):
     if not BOT_TOKEN:
-        print("[ERROR] BOT_TOKEN not set in worker env")
+        # print("[ERROR] BOT_TOKEN not set in worker env")
         return
 
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
