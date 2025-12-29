@@ -8,8 +8,8 @@ from core.predictor import predictor
 from core.state import update_state
 from core.feature_engineering import build_lstm_input
 from core.data_fetcher import fetch_klines, merge_timeframes
-from telegram.bot import load_settings
-from telegram.notifier import send_message
+from tg.bot import load_settings
+from tg.notifier import send_message
 
 SYMBOL = "BTCUSDT"
 SLEEP_SECONDS = 120
