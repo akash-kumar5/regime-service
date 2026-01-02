@@ -46,20 +46,19 @@ Each prediction includes **probabilities**, not just a label.
 
 🏗 Architecture Overview
 ------------------------
+```mermaid
 flowchart LR
     Binance --> Fetch[Fetch Data]
     Fetch --> FE[Feature Engineering]
     FE --> LSTM[LSTM Inference]
     LSTM --> Alert[Alert Logic]
-
     Alert --> API[FastAPI]
     API --> Regime[/current-regime]
-
     Regime --> TG[Telegram Bot]
     TG --> Alerts[Alerts]
     TG --> Toggles[Regime Toggles]
     TG --> Prefs[User Preferences]
-
+```
 
 
 📡 API
@@ -144,6 +143,7 @@ This project is for **research and educational purposes only**.
 - Crypto markets are highly risky
 
 Use at your own discretion.
+
 
 
 
