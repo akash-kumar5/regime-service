@@ -30,12 +30,17 @@ This project continuously:
 
 It is designed as a **microservice**, not a trading bot.
 
-🧠 Market Regimes (Model Output)
+ Market Regimes (Model Output)
 --------------------------------
 
 The model classifies the market into one of the following regimes:
 
-RegimeMeaning**Choppy High-Vol**Noisy price action with large swings**Range**Sideways consolidation**Squeeze**Low volatility, compression phase**Strong Trend**Sustained directional move**Volatility Spike**Sudden volatility expansion**Weak Trend**Directional bias but fragile
+- **Choppy High-Vol** - Noisy price action with large swings
+- **Range** - Sideways consolidation
+- **Squeeze** - Low volatility, compression phase
+- **Strong Trend** - Sustained directional move
+- **Volatility Spike** - Sudden volatility expansion
+- **Weak Trend** - Directional bias but fragile
 
 Each prediction includes **probabilities**, not just a label.
 
@@ -46,21 +51,24 @@ Each prediction includes **probabilities**, not just a label.
 │ Live Data  │
 └─────┬──────┘
       │
-┌─────▼────────┐
-│ Worker       │  ← runs continuously
-│ - fetch data │
-│ - features   │
-│ - LSTM model │
-│ - alerts     │
-└─────┬────────┘
+┌─────▼────────────────────┐
+│ Worker (continuous)      │  
+│ - fetch data             │
+│ - features enginerring   │
+│ - LSTM inference         │
+│ - alert logic            │
+└─────┬────────────────────┘
       │
 ┌─────▼────────┐
 │ API (FastAPI)│  ← /current-regime
 └─────┬────────┘
       │
-┌─────▼────────┐
-│ Telegram Bot │  ← alerts & regime toggles
-└──────────────┘
+┌─────▼──────────────┐
+│ Telegram Bot       |
+│ - alerts           |
+| - regime toggles   |
+| - user preferences |
+└────────────────────┘
 
 
 📡 API
@@ -86,22 +94,26 @@ Example response:
 
 
 
-🤖 Telegram Bot Features
+ Telegram Bot Features
 ------------------------
 
-*   Toggle **event alerts**:
-    
-    *   Strong trend confirmation
-        
-    *   Choppy market warning
-        
-    *   Regime changes
-        
-*   Toggle **regime entry notifications**
-    
-*   On-demand /status command
-    
-*   Button-based UI (no commands needed)
+* Toggle regime-based alerts
+
+* Toggle event-based notifications
+
+* Alerts for:
+
+    * Strong trend confirmation
+
+    * Choppy market warnings
+
+    * Regime transitions
+
+* On-demand status check
+
+* Button-based UI (no commands required)
+
+User preferences are persisted locally.
     
 
 🚀 Running the project
@@ -120,8 +132,8 @@ Example response:
 git clone https://github.com/akash-kumar5/regime-service.git
 cd regime-service
 python -m venv venv
-source v
-
+source venv/bin/activate 
+pip install -r requirements.txt
 
 
 ## ⚙️ Production Notes
@@ -129,7 +141,7 @@ source v
 - The worker runs continuously and fetches live Binance data.
 - The model outputs probabilistic regimes, not deterministic signals.
 - Alerts use confidence thresholds and regime transitions to avoid noise.
-- User preferences are persisted locally for the Telegram bot.
+- Designed to be redeployed easily or run locally to manage infrastructure costs
 
 ## ⚠️ Disclaimer
 
@@ -141,6 +153,7 @@ This project is for **research and educational purposes only**.
 - Crypto markets are highly risky
 
 Use at your own discretion.
+
 
 
 
