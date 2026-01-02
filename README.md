@@ -46,29 +46,20 @@ Each prediction includes **probabilities**, not just a label.
 
 🏗 Architecture Overview
 ------------------------
-┌────────────┐
-│ Binance    │
-│ Live Data  │
-└─────┬──────┘
-      │
-┌─────▼────────────────────┐
-│ Worker (continuous)      │  
-│ - fetch data             │
-│ - features enginerring   │
-│ - LSTM inference         │
-│ - alert logic            │
-└─────┬────────────────────┘
-      │
-┌─────▼────────┐
-│ API (FastAPI)│  ← /current-regime
-└─────┬────────┘
-      │
-┌─────▼──────────────┐
-│ Telegram Bot       |
-│ - alerts           |
-| - regime toggles   |
-| - user preferences |
-└────────────────────┘
+flowchart LR
+    Binance --> Fetch[Fetch Data]
+    Fetch --> FE[Feature Engineering]
+    FE --> LSTM[LSTM Inference]
+    LSTM --> Alert[Alert Logic]
+
+    Alert --> API[FastAPI]
+    API --> Regime[/current-regime]
+
+    Regime --> TG[Telegram Bot]
+    TG --> Alerts[Alerts]
+    TG --> Toggles[Regime Toggles]
+    TG --> Prefs[User Preferences]
+
 
 
 📡 API
@@ -153,6 +144,7 @@ This project is for **research and educational purposes only**.
 - Crypto markets are highly risky
 
 Use at your own discretion.
+
 
 
 
