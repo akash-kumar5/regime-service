@@ -67,6 +67,7 @@ flowchart LR
 ### GET /current-regime
 
 Example response:
+```yaml
 {
   "symbol": "BTCUSDT",
   "current_regime": "Strong Trend",
@@ -81,6 +82,8 @@ Example response:
   },
   "timestamp": 1766424417
 }
+```
+
 
 
 
@@ -143,6 +146,7 @@ This project is for **research and educational purposes only**.
 - Crypto markets are highly risky
 
 Use at your own discretion.
+
 
 
 
