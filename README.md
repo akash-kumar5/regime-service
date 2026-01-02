@@ -53,7 +53,7 @@ flowchart LR
     FE --> LSTM[LSTM Inference]
     LSTM --> Alert[Alert Logic]
     Alert --> API[FastAPI]
-    API --> Regime[/current-regime]
+    API --> Regime["/current-regime"]
     Regime --> TG[Telegram Bot]
     TG --> Alerts[Alerts]
     TG --> Toggles[Regime Toggles]
@@ -143,6 +143,7 @@ This project is for **research and educational purposes only**.
 - Crypto markets are highly risky
 
 Use at your own discretion.
+
 
 
 
