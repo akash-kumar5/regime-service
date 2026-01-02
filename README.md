@@ -2,24 +2,6 @@
 
 **Real-time market regime detection for crypto markets using deep learning.** This service classifies the current market state (trend, chop, volatility) using multi-timeframe OHLCV data and serves it via API and Telegram alerts.
 
-##  Live Deployment
-
-This service is **actively running in production** on AWS.
-
-### API
-The regime classification API is live and continuously updated.
-
-> Endpoint (example):
-GET /current-regime
-*(Exact URL intentionally not exposed publicly)*
-
----
-
-### 🤖 Telegram Bot (Live)
-You can interact with the live system via Telegram:
-
-👉 **@akash_regime_bot**
-
 Features:
 - Real-time regime status
 - Toggle regime-based notifications
@@ -159,5 +141,6 @@ This project is for **research and educational purposes only**.
 - Crypto markets are highly risky
 
 Use at your own discretion.
+
 
 
